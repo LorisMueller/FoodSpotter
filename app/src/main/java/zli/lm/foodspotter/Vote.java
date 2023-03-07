@@ -4,9 +4,9 @@ public class Vote {
 
     private String favourite;
     private String least_favourite;
-    private int score;
+    private double score;
 
-    public Vote(String favourite, String least_favourite, int score) {
+    public Vote(String favourite, String least_favourite, double score) {
         this.favourite = favourite;
         this.least_favourite = least_favourite;
         this.score = score;
@@ -28,11 +28,11 @@ public class Vote {
         this.least_favourite = least_favourite;
     }
 
-    public int getScore() {
+    public double getScore() {
         return score;
     }
 
-    public void setScore(int score) {
+    public void setScore(double score) {
         this.score = score;
     }
 }

@@ -24,7 +24,7 @@ public class StartActivity extends AppCompatActivity {
         submit = findViewById(R.id.submit);
         number_participants = findViewById(R.id.participants);
 
-        Vote[] votes = new Vote[Integer.parseInt(number_participants.getText().toString())];
+        Vote[] votes = new Vote[10];
 
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
