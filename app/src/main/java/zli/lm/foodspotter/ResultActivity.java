@@ -7,19 +7,19 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class StartActivity extends AppCompatActivity {
+public class ResultActivity extends AppCompatActivity {
 
-    private Button submit;
+    private Button home;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_start);
+        setContentView(R.layout.activity_result);
 
-        Intent intent = new Intent(this, InputActivity.class);
-        submit = findViewById(R.id.submit);
+        home = findViewById(R.id.backHome);
+        Intent intent = new Intent(this, MainActivity.class);
 
-        submit.setOnClickListener(new View.OnClickListener() {
+        home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(intent);

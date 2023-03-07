@@ -7,19 +7,19 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class StartActivity extends AppCompatActivity {
+public class ShackingActivity extends AppCompatActivity {
 
-    private Button submit;
+    private Button nextPerson;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_start);
+        setContentView(R.layout.activity_shacking);
 
-        Intent intent = new Intent(this, InputActivity.class);
-        submit = findViewById(R.id.submit);
+        nextPerson = findViewById(R.id.next);
+        Intent intent = new Intent(this, ResultActivity.class);
 
-        submit.setOnClickListener(new View.OnClickListener() {
+        nextPerson.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(intent);
