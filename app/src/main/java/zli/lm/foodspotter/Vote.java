@@ -1,6 +1,8 @@
 package zli.lm.foodspotter;
 
-public class Vote {
+import java.io.Serializable;
+
+public class Vote implements Serializable {
 
     private String favourite;
     private String least_favourite;
@@ -34,5 +36,14 @@ public class Vote {
 
     public void setScore(double score) {
         this.score = score;
+    }
+
+    @Override
+    public String toString() {
+        return "Vote{" +
+                "favourite='" + favourite + '\'' +
+                ", least_favourite='" + least_favourite + '\'' +
+                ", score=" + score +
+                '}';
     }
 }

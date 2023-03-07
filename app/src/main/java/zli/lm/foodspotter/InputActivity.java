@@ -15,8 +15,8 @@ import java.util.HashMap;
 public class InputActivity extends AppCompatActivity {
 
     private Button submit_restaurants;
-    private String f_restaurant;
-    private String l_restaurant;
+    private TextView f_restaurant;
+    private TextView l_restaurant;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,17 +30,20 @@ public class InputActivity extends AppCompatActivity {
         int participants = lastIntent.getIntExtra("participants", 0);
         Vote[] votes = (Vote[]) intent.getSerializableExtra("votes_array");
 
-        f_restaurant = findViewById(R.id.f_restaurant).toString();
-        l_restaurant = findViewById(R.id.l_restaurant).toString();
+        f_restaurant = findViewById(R.id.f_restaurant);
+        l_restaurant = findViewById(R.id.l_restaurant);
 
         submit_restaurants.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                    intent.putExtra("participants", participants);
-                    intent.putExtra("votes_array", votes);
-                    intent.putExtra("f_restaurant", f_restaurant);
-                    intent.putExtra("l_restaurant", l_restaurant);
-                    startActivity(intent);
+                String favourite = f_restaurant.getText().toString();
+                String least_favourite = l_restaurant.getText().toString();
+
+                intent.putExtra("participants", participants);
+                intent.putExtra("votes_array", votes);
+                intent.putExtra("f_restaurant", favourite);
+                intent.putExtra("l_restaurant", least_favourite);
+                startActivity(intent);
             }
         });
     }

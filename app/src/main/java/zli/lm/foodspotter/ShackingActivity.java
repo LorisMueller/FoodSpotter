@@ -17,7 +17,7 @@ public class ShackingActivity extends AppCompatActivity implements SensorEventLi
 
     private Button nextPerson;
 
-    //Variables for Sensor and it's Highscore
+    //Variables for sensor and score
     private SensorManager sensorManager;
     private Sensor accelerometer;
     private float acceleration;
@@ -51,24 +51,32 @@ public class ShackingActivity extends AppCompatActivity implements SensorEventLi
         Intent lastIntent = getIntent();
         int participants = lastIntent.getIntExtra("participants", 0);
         Vote[] votes = (Vote[]) lastIntent.getSerializableExtra("votes_array");
+        if (votes == null){
+            votes = new Vote[participants];
+        }
         String f_restaurant = lastIntent.getStringExtra("f_restaurant");
         String l_restaurant = lastIntent.getStringExtra("l_restaurant");
 
         if(participants == 1) {
+            Vote[] finalVotes = votes;
             nextPerson.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    Vote vote = new Vote(f_restaurant, l_restaurant, highestScore);
+                    finalVotes[participants - 1] = vote;
+                    resultIntent.putExtra("votes_array", finalVotes);
                     startActivity(resultIntent);
                 }
             });
         } else {
             int updatedParticipants = participants - 1;
+            Vote[] finalVotes = votes;
             nextPerson.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     Vote vote = new Vote(f_restaurant, l_restaurant, highestScore);
-                    votes[participants - 1] = vote;
-                    inputIntent.putExtra("votes_array", votes);
+                    finalVotes[participants - 1] = vote;
+                    inputIntent.putExtra("votes_array", finalVotes);
                     inputIntent.putExtra("participants", updatedParticipants);
                     startActivity(inputIntent);
                 }
