@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.lang.reflect.Array;
+
 public class StartActivity extends AppCompatActivity {
 
     private Button submit;
@@ -22,11 +24,14 @@ public class StartActivity extends AppCompatActivity {
         submit = findViewById(R.id.submit);
         number_participants = findViewById(R.id.participants);
 
+        Vote[] votes = new Vote[Integer.parseInt(number_participants.getText().toString())];
+
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Integer participants = Integer.parseInt(number_participants.getText().toString());
                 intent.putExtra("participants", participants);
+                intent.putExtra("votes_array", votes);
                 startActivity(intent);
             }
         });
