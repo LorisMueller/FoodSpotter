@@ -17,13 +17,29 @@ public class ShackingActivity extends AppCompatActivity {
         setContentView(R.layout.activity_shacking);
 
         nextPerson = findViewById(R.id.next);
-        Intent intent = new Intent(this, ResultActivity.class);
+        Intent resultIntent = new Intent(this, ResultActivity.class);
+        Intent inputIntent = new Intent(this, InputActivity.class);
 
-        nextPerson.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(intent);
-            }
-        });
+        Intent lastIntent = getIntent();
+        int participants = lastIntent.getIntExtra("participants", 0);
+
+        if(participants == 1) {
+            nextPerson.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    startActivity(resultIntent);
+                }
+            });
+        } else {
+            int updatedParticipants = participants - 1;
+            nextPerson.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    inputIntent.putExtra("participants", updatedParticipants);
+                    startActivity(inputIntent);
+                }
+            });
+        }
+
     }
 }
