@@ -22,6 +22,7 @@ public class ShackingActivity extends AppCompatActivity implements SensorEventLi
     private String l_restaurant;
     private int participants;
     private Vote[] votes;
+    private String voteString;
 
     //Variables for sensor and score
     private SensorManager sensorManager;
@@ -56,7 +57,9 @@ public class ShackingActivity extends AppCompatActivity implements SensorEventLi
 
         Intent lastIntent = getIntent();
         participants = lastIntent.getIntExtra("participants", 0);
-        votes = (Vote[]) lastIntent.getSerializableExtra("votes_array");
+        //votes = (Vote[]) lastIntent.getSerializableExtra("votes_array");
+        voteString = lastIntent.getStringExtra("votes_string");
+
         Log.d("test", "array: " + Arrays.toString(votes));
         if (votes == null){
             votes = new Vote[participants];
@@ -67,14 +70,17 @@ public class ShackingActivity extends AppCompatActivity implements SensorEventLi
             @Override
             public void onClick(View view) {
                 int particpantIndex = participants - 1;
-                votes[particpantIndex] = new Vote(f_restaurant, l_restaurant, highestScore);
+                Vote vote = new Vote(f_restaurant, l_restaurant, highestScore);
+                String voteStrings = voteString + vote.toString() + '$';
 
                 if (participants == 1){
-                    resultIntent.putExtra("votes_array", votes);
+                    //resultIntent.putExtra("votes_array", votes);
+                    inputIntent.putExtra("votes_string", voteStrings);
                     startActivity(resultIntent);
                 } else {
                     int updatedParticipants = participants -1;
-                    inputIntent.putExtra("votes_array", votes);
+                    //inputIntent.putExtra("votes_array", votes);
+                    inputIntent.putExtra("votes_string", voteStrings);
                     inputIntent.putExtra("participants", updatedParticipants);
                     startActivity(inputIntent);
                 }

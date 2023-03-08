@@ -14,6 +14,10 @@ public class Vote implements Serializable {
         this.score = score;
     }
 
+    public Vote(){
+
+    }
+
     public String getFavourite() {
         return favourite;
     }
@@ -40,10 +44,14 @@ public class Vote implements Serializable {
 
     @Override
     public String toString() {
-        return "Vote{" +
-                "favourite='" + favourite + '\'' +
-                ", least_favourite='" + least_favourite + '\'' +
-                ", score=" + score +
-                '}';
+        return favourite + "," + least_favourite + "," + score;
+    }
+
+    public static Vote fromString(String s) {
+        String[] parts = s.split(",");
+        String favourite = parts[0];
+        String leastFavourite = parts[1];
+        int score = Integer.parseInt(parts[2]);
+        return new Vote(favourite, leastFavourite, score);
     }
 }

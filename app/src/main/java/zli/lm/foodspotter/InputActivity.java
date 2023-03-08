@@ -28,7 +28,8 @@ public class InputActivity extends AppCompatActivity {
 
         Intent lastIntent = getIntent();
         int participants = lastIntent.getIntExtra("participants", 0);
-        Vote[] votes = (Vote[]) intent.getSerializableExtra("votes_array");
+        //Vote[] votes = (Vote[]) intent.getSerializableExtra("votes_array");
+        String voteString = intent.getStringExtra("votes_string");
 
         f_restaurant = findViewById(R.id.f_restaurant);
         l_restaurant = findViewById(R.id.l_restaurant);
@@ -40,7 +41,8 @@ public class InputActivity extends AppCompatActivity {
                 String least_favourite = l_restaurant.getText().toString();
 
                 intent.putExtra("participants", participants);
-                intent.putExtra("votes_array", votes);
+                //intent.putExtra("votes_array", votes);
+                intent.putExtra("votes_string", voteString);
                 intent.putExtra("f_restaurant", favourite);
                 intent.putExtra("l_restaurant", least_favourite);
                 startActivity(intent);
