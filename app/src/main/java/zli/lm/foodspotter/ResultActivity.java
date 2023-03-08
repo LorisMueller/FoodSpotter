@@ -16,7 +16,7 @@ import java.util.Arrays;
 public class ResultActivity extends AppCompatActivity {
 
     private Button home;
-    private TextView test;
+    private TextView winner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,11 +32,11 @@ public class ResultActivity extends AppCompatActivity {
         home = findViewById(R.id.backHome);
         Intent intent = new Intent(this, MainActivity.class);
 
-        test = findViewById(R.id.arraytest);
+        winner = findViewById(R.id.winner);
         Intent lastIntent = getIntent();
         String voteString = lastIntent.getStringExtra("votes_string");
-        //test.setText(Arrays.toString(votes));
-        test.setText(voteString);
+        String winnerRestaurant = CalculateWinnerService.calculateWinner(voteString);
+        winner.setText(winnerRestaurant);
         home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

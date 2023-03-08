@@ -13,9 +13,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
-import java.util.Arrays;
-
-public class ShackingActivity extends AppCompatActivity implements SensorEventListener {
+public class ShackingActivity2 extends AppCompatActivity implements SensorEventListener {
 
     private Button nextPerson;
     private String f_restaurant;
@@ -40,7 +38,7 @@ public class ShackingActivity extends AppCompatActivity implements SensorEventLi
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_shacking);
+        setContentView(R.layout.activity_shacking2);
 
         //Sensor
         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
@@ -52,26 +50,24 @@ public class ShackingActivity extends AppCompatActivity implements SensorEventLi
         //Input Data
         nextPerson = findViewById(R.id.next);
         nextPerson.setEnabled(false);
-        Intent input2Intent = new Intent(this, InputActivity2.class);
+        Intent resultIntent = new Intent(this, ResultActivity.class);
 
         Intent lastIntent = getIntent();
         participants = lastIntent.getIntExtra("participants", 0);
+        voteString = lastIntent.getStringExtra("votes_string");
+        f_restaurant = lastIntent.getStringExtra("fa_restaurant");
+        l_restaurant = lastIntent.getStringExtra("le_restaurant");
 
-        if (votes == null){
-            votes = new Vote[participants];
-        }
-        f_restaurant = lastIntent.getStringExtra("f_restaurant");
-        l_restaurant = lastIntent.getStringExtra("l_restaurant");
         nextPerson.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Vote vote = new Vote(f_restaurant, l_restaurant, highestScore);
-                String voteStrings = vote.toString() + '$';
+                String voteStrings = voteString + vote.toString() + '$';
 
-                    int updatedParticipants = participants -1;
-                    input2Intent.putExtra("votes_string", voteStrings);
-                    input2Intent.putExtra("participants", updatedParticipants);
-                    startActivity(input2Intent);
+                int updatedParticipants = participants -1;
+                resultIntent.putExtra("votes_string", voteStrings);
+                resultIntent.putExtra("participants", updatedParticipants);
+                startActivity(resultIntent);
             }
         });
     }
@@ -118,4 +114,5 @@ public class ShackingActivity extends AppCompatActivity implements SensorEventLi
     }
     @Override
     public void onAccuracyChanged(Sensor sensor, int i) {}
+
 }

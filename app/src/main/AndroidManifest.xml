@@ -13,10 +13,17 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FoodSpotter"
         tools:targetApi="31">
+        <activity
+            android:name=".ShackingActivity2"
+            android:exported="false" />
+        <activity
+            android:name=".InputActivity2"
+            android:exported="false" />
+
         <service
             android:name=".CalculateWinnerService"
             android:enabled="true"
-            android:exported="true"></service>
+            android:exported="true" />
 
         <activity
             android:name=".ResultActivity"

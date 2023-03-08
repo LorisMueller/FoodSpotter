@@ -8,11 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
-import java.util.HashMap;
-
-public class InputActivity extends AppCompatActivity {
+public class InputActivity2 extends AppCompatActivity {
 
     private Button submit_restaurants;
     private TextView f_restaurant;
@@ -21,13 +17,14 @@ public class InputActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_input);
+        setContentView(R.layout.activity_input2);
 
         submit_restaurants = findViewById(R.id.shaking);
-        Intent intent = new Intent(this, ShackingActivity.class);
+        Intent intent = new Intent(this, ShackingActivity2.class);
 
         Intent lastIntent = getIntent();
         int participants = lastIntent.getIntExtra("participants", 0);
+        String voteString = lastIntent.getStringExtra("votes_string");
 
         f_restaurant = findViewById(R.id.f_restaurant);
         l_restaurant = findViewById(R.id.l_restaurant);
@@ -39,8 +36,9 @@ public class InputActivity extends AppCompatActivity {
                 String least_favourite = l_restaurant.getText().toString();
 
                 intent.putExtra("participants", participants);
-                intent.putExtra("f_restaurant", favourite);
-                intent.putExtra("l_restaurant", least_favourite);
+                intent.putExtra("fa_restaurant", favourite);
+                intent.putExtra("le_restaurant", least_favourite);
+                intent.putExtra("votes_string", voteString);
                 startActivity(intent);
             }
         });

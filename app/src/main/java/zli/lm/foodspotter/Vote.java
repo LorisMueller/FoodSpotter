@@ -51,7 +51,7 @@ public class Vote implements Serializable {
         String[] parts = s.split(",");
         String favourite = parts[0];
         String leastFavourite = parts[1];
-        int score = Integer.parseInt(parts[2]);
+        double score = Double.parseDouble(parts[2]);
         return new Vote(favourite, leastFavourite, score);
     }
 }

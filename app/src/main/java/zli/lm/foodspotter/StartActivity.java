@@ -32,8 +32,6 @@ public class StartActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Integer participants = Integer.parseInt(number_participants.getText().toString());
                 intent.putExtra("participants", participants);
-                //intent.putExtra("votes_array", votes);
-                intent.putExtra("votes_string", "");
                 startActivity(intent);
             }
         });
