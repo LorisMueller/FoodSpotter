@@ -14,7 +14,7 @@
         android:layout_marginStart="80dp"
         android:layout_marginTop="57dp"
         android:backgroundTint="#F30000"
-        android:text="Start Shacking"
+        android:text="Start Shaking"
         android:textColor="#000000"
         android:textSize="20sp"
         app:cornerRadius="30px"
