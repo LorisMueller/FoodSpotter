@@ -14,6 +14,7 @@ public class StartActivity extends AppCompatActivity {
 
     private Button submit;
     private TextView number_participants;
+    private int fix_participants;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

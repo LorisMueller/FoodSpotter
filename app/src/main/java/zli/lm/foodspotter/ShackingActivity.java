@@ -13,9 +13,15 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import java.util.Arrays;
+
 public class ShackingActivity extends AppCompatActivity implements SensorEventListener {
 
     private Button nextPerson;
+    private String f_restaurant;
+    private String l_restaurant;
+    private int participants;
+    private Vote[] votes;
 
     //Variables for sensor and score
     private SensorManager sensorManager;
@@ -49,39 +55,31 @@ public class ShackingActivity extends AppCompatActivity implements SensorEventLi
         Intent inputIntent = new Intent(this, InputActivity.class);
 
         Intent lastIntent = getIntent();
-        int participants = lastIntent.getIntExtra("participants", 0);
-        Vote[] votes = (Vote[]) lastIntent.getSerializableExtra("votes_array");
+        participants = lastIntent.getIntExtra("participants", 0);
+        votes = (Vote[]) lastIntent.getSerializableExtra("votes_array");
+        Log.d("test", "array: " + Arrays.toString(votes));
         if (votes == null){
             votes = new Vote[participants];
         }
-        String f_restaurant = lastIntent.getStringExtra("f_restaurant");
-        String l_restaurant = lastIntent.getStringExtra("l_restaurant");
+        f_restaurant = lastIntent.getStringExtra("f_restaurant");
+        l_restaurant = lastIntent.getStringExtra("l_restaurant");
+        nextPerson.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int particpantIndex = participants - 1;
+                votes[particpantIndex] = new Vote(f_restaurant, l_restaurant, highestScore);
 
-        if(participants == 1) {
-            Vote[] finalVotes = votes;
-            nextPerson.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Vote vote = new Vote(f_restaurant, l_restaurant, highestScore);
-                    finalVotes[participants - 1] = vote;
-                    resultIntent.putExtra("votes_array", finalVotes);
+                if (participants == 1){
+                    resultIntent.putExtra("votes_array", votes);
                     startActivity(resultIntent);
-                }
-            });
-        } else {
-            int updatedParticipants = participants - 1;
-            Vote[] finalVotes = votes;
-            nextPerson.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Vote vote = new Vote(f_restaurant, l_restaurant, highestScore);
-                    finalVotes[participants - 1] = vote;
-                    inputIntent.putExtra("votes_array", finalVotes);
+                } else {
+                    int updatedParticipants = participants -1;
+                    inputIntent.putExtra("votes_array", votes);
                     inputIntent.putExtra("participants", updatedParticipants);
                     startActivity(inputIntent);
                 }
-            });
-        }
+            }
+        });
     }
 
     public Vote[] setRestaurants(String favourite, String least, double score, Vote[] votes, int index){

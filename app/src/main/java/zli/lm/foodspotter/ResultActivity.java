@@ -9,6 +9,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.util.Arrays;
+
 public class ResultActivity extends AppCompatActivity {
 
     private Button home;
@@ -27,11 +29,11 @@ public class ResultActivity extends AppCompatActivity {
         Vote[] votes = (Vote[]) lastIntent.getSerializableExtra("votes_array");
         double score = votes[0].getScore();
         String fav = votes[0].getFavourite();
-        test.setText(fav);
+        String result = CalculateWinnerService.calculateWinner(votes);
+        test.setText(Arrays.toString(votes));
         home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.d("object", "aaaaaaaaaaaaaaaaaa: " + votes.toString());
                 startActivity(intent);
             }
         });
