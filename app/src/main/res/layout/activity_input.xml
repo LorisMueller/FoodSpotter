@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/black"
+    tools:context=".InputActivity">
+
+    <Button
+        android:id="@+id/shaking"
+        android:layout_width="244dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="57dp"
+        android:backgroundTint="#F30000"
+        android:text="Start Shacking"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        app:cornerRadius="30px"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/l_restaurant" />
+
+    <EditText
+        android:id="@+id/l_restaurant"
+        android:layout_width="232dp"
+        android:layout_height="52dp"
+        android:layout_marginStart="88dp"
+        android:background="#86F30000"
+        android:ems="10"
+        android:hint="e.g. Migros Restaurant"
+        android:inputType="text"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView9" />
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="220dp"
+        android:layout_height="22dp"
+        android:layout_marginStart="88dp"
+        android:layout_marginTop="31dp"
+        android:text="Least favourite Restaurant"
+        android:textColor="#FFFFFF"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/f_restaurant" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="314dp"
+        android:layout_height="64dp"
+        android:layout_marginStart="56dp"
+        android:layout_marginTop="86dp"
+        android:fontFamily="@font/alfa_slab_one"
+        android:text="FoodSpotter"
+        android:textColor="#FFFFFF"
+        android:textSize="48sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/restaurant_label"
+        android:layout_width="158dp"
+        android:layout_height="23dp"
+        android:layout_marginStart="88dp"
+        android:layout_marginTop="61dp"
+        android:text="Favourite Restaurant"
+        android:textColor="#FFFFFF"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+    <EditText
+        android:id="@+id/f_restaurant"
+        android:layout_width="232dp"
+        android:layout_height="52dp"
+        android:layout_marginStart="88dp"
+        android:background="#86F30000"
+        android:ems="10"
+        android:hint="e.g. BurgerKing"
+        android:inputType="text"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/restaurant_label" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
